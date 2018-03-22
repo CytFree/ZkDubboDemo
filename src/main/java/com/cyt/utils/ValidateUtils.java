@@ -1,8 +1,5 @@
 package com.cyt.utils;
 
-import com.cyt.annotation.NotNull;
-import com.cyt.exception.ValidateException;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -16,16 +13,11 @@ public class ValidateUtils {
         Field[] fields = t.getClass().getDeclaredFields();
 
         for (Field field : fields) {
-            Annotation[] annotations = field.getDeclaredAnnotations();
+            Annotation[] annotations = field.getAnnotations();
             if (annotations != null) {
                 for (Annotation annotation : annotations) {
-                    if (annotation instanceof NotNull) {
-                        Object value = getFieldValue(t, field.getName());
-                        boolean isBank = value == null || (value instanceof String && "".equals(value));
-                        if (isBank) {
-                            throw new ValidateException(((NotNull) annotation).value() + "，" + ((NotNull) annotation).msg());
-                        }
-                    }
+                    Object value = getFieldValue(t, field.getName());
+                    AnnotationValidateFactory.annotationValidate(value, annotation);
                 }
             }
         }

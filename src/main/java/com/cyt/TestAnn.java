@@ -1,5 +1,6 @@
 package com.cyt;
 
+import com.cyt.pojo.Dream;
 import com.cyt.utils.ValidateUtils;
 import com.cyt.pojo.Stu;
 
@@ -10,8 +11,9 @@ import com.cyt.pojo.Stu;
 public class TestAnn {
     public static void main(String[] args) {
         Stu stu = new Stu();
-        stu.setStuName("cyt");
+        stu.setStuName("Y");
         stu.setStuAge(11);
+        stu.setDream(new Dream());
 
         try {
             ValidateUtils.validate(stu);

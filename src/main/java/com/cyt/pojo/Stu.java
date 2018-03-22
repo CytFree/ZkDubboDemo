@@ -1,5 +1,6 @@
 package com.cyt.pojo;
 
+import com.cyt.annotation.LengthValidate;
 import com.cyt.annotation.NotNull;
 
 /**
@@ -8,6 +9,7 @@ import com.cyt.annotation.NotNull;
  */
 public class Stu {
     @NotNull(value = "学生姓名", msg = "不能为空")
+    @LengthValidate(value = "学生姓名", minLength = 2, maxLength = 10)
     private String stuName;
 
     @NotNull(value = "学生年龄", msg = "不能为空")
@@ -15,6 +17,8 @@ public class Stu {
 
     @NotNull(value = "学生梦想", msg = "不能为空")
     private Dream dream;
+
+    private Integer stuHeight;
 
     public String getStuName() {
         return stuName;
@@ -38,5 +42,13 @@ public class Stu {
 
     public void setDream(Dream dream) {
         this.dream = dream;
+    }
+
+    public Integer getStuHeight() {
+        return stuHeight;
+    }
+
+    public void setStuHeight(Integer stuHeight) {
+        this.stuHeight = stuHeight;
     }
 }
